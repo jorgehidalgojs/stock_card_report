@@ -53,30 +53,39 @@
     <template id="stock_card_report.report_stock_card_report_base">
         <t t-foreach="o.product_ids" t-as="product">
             <div class="page">
-                <div class="row">
-                    <t t-set="title">Ficha de Stock - <t t-out="product.name" /></t>
-                    <h4 class="mt0" t-out="title" style="text-align: center;" />
+
+                <!-- Cabeçalho do produto: código + nome -->
+                <div class="sc_product_header">
+                    <span class="sc_product_ref">
+                        <t t-out="product.default_code or ''" />
+                    </span>
+                    <span class="sc_product_name">
+                        <t t-out="product.name" />
+                    </span>
                 </div>
+
+                <!-- Filtros aplicados -->
                 <t t-call="stock_card_report.report_stock_card_report_filters" />
+
                 <div class="act_as_table data_table mt4" style="width: 100%;">
                     <t t-call="stock_card_report.report_stock_card_lines_header" />
-                    <!-- Saldo inicial: pre-calculado en Python, sin filtrado ORM -->
+
+                    <!-- Saldo Anterior -->
                     <t t-set="initial" t-value="o._get_product_initial(product)" />
-                    <div class="act_as_row lines">
+                    <div class="act_as_row sc_initial_row">
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
-                        <div class="act_as_cell"><strong>Saldo Inicial</strong></div>
+                        <div class="act_as_cell sc_label">STOCK ANTERIOR</div>
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell right"><t t-out="'{0:,.3f}'.format(initial)" /></div>
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
-                        <div class="act_as_cell" />
-                        <div class="act_as_cell" />
-                        <div class="act_as_cell" />
-                        <div class="act_as_cell right">
-                            <strong><t t-out="'{0:,.3f}'.format(initial)" /></strong>
-                        </div>
+                        <div class="act_as_cell right sc_balance"><t t-out="'{0:,.3f}'.format(initial)" /></div>
                     </div>
-                    <!-- Líneas: datos pre-agrupados por producto, sin filtered() -->
+
+                    <!-- Linhas de movimento -->
                     <t t-set="product_balance" t-value="initial" />
                     <t t-foreach="o._get_product_lines(product)" t-as="product_line">
                         <t
@@ -85,7 +94,23 @@
                         />
                         <t t-call="stock_card_report.report_stock_card_lines" />
                     </t>
+
+                    <!-- Linha de TOTAIS -->
+                    <t t-set="totals" t-value="o._get_product_totals(product)" />
+                    <div class="act_as_row sc_totals_row">
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell sc_label">TOTAIS</div>
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell right"><t t-out="'{0:,.3f}'.format(totals['total_in'])" /></div>
+                        <div class="act_as_cell right"><t t-out="'{0:,.3f}'.format(totals['total_out'])" /></div>
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell" />
+                        <div class="act_as_cell right sc_balance"><t t-out="'{0:,.3f}'.format(totals['final_balance'])" /></div>
+                    </div>
                 </div>
+
                 <p style="page-break-before:always;" />
             </div>
         </t>

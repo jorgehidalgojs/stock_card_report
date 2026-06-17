@@ -13,9 +13,6 @@
 .act_as_thead {
     display: table-header-group !important;
 }
-.act_as_row.labels {
-    background-color: #f0f0f0 !important;
-}
 .data_table {
     width: 100% !important;
     border-left: 0px;
@@ -29,14 +26,18 @@
     border-collapse: collapse;
 }
 .data_table .act_as_cell {
-    border: 1px solid lightGrey;
+    border: 1px solid #cccccc;
     text-align: center;
-}
-.data_table .act_as_cell {
+    padding: 2px 4px;
     word-wrap: break-word;
 }
 .data_table .act_as_row.labels {
     font-weight: bold;
+    background-color: #3a6ea5 !important;
+    color: white !important;
+}
+.data_table .act_as_row.labels .act_as_cell {
+    border-color: #2e5890;
 }
 .act_as_cell.left {
     text-align: left;
@@ -44,6 +45,74 @@
 .act_as_cell.right {
     text-align: right;
 }
+
+/* Cabeçalho do produto */
+.sc_product_header {
+    text-align: center;
+    font-family: Helvetica, Arial;
+    margin-bottom: 6px;
+    border-bottom: 2px solid #3a6ea5;
+    padding-bottom: 4px;
+}
+.sc_product_ref {
+    font-size: 11px;
+    font-weight: bold;
+    color: #3a6ea5;
+    margin-right: 8px;
+    background: #eef3fa;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+.sc_product_name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* Linha STOCK ANTERIOR — amarela como no PHC */
+.sc_initial_row {
+    background-color: #fff59d !important;
+    font-weight: bold;
+}
+.sc_initial_row .act_as_cell {
+    border-color: #e6d84a !important;
+}
+
+/* Linha TOTAIS */
+.sc_totals_row {
+    background-color: #e8f0fe !important;
+    font-weight: bold;
+    border-top: 2px solid #3a6ea5;
+}
+.sc_totals_row .act_as_cell {
+    border-color: #3a6ea5 !important;
+}
+
+/* Coluna Saldo em destaque */
+.sc_balance {
+    background-color: #f0f7ff;
+    font-weight: bold;
+}
+.sc_initial_row .sc_balance,
+.sc_totals_row .sc_balance {
+    background-color: #3a6ea5 !important;
+    color: white !important;
+}
+
+/* Label STOCK ANTERIOR / TOTAIS alinhado à esquerda */
+.sc_label {
+    text-align: left !important;
+    padding-left: 6px !important;
+}
+
+/* Linhas alternadas */
+.act_as_row.lines:nth-child(even) {
+    background-color: #f8f9fa;
+}
+.act_as_row.lines:hover {
+    background-color: #e8f4ff;
+}
+
 .custom_footer {
     font-size: 7px !important;
 }
@@ -52,7 +121,7 @@
 }
 .o_stock_card_reports_page {
     padding-top: 10px;
-    width: 90%;
+    width: 95%;
     margin-right: auto;
     margin-left: auto;
     font-family: Helvetica, Arial;

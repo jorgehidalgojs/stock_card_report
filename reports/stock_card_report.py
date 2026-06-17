@@ -166,6 +166,18 @@ class StockCardReport(models.TransientModel):
     def _get_product_lines(self, product):
         return self._get_stock_data().get(product.id, {}).get("lines", [])
 
+    def _get_product_totals(self, product):
+        """Retorna {'total_in': float, 'total_out': float, 'final_balance': float}"""
+        lines = self._get_product_lines(product)
+        initial = self._get_product_initial(product)
+        total_in = sum(l.product_in for l in lines)
+        total_out = sum(l.product_out for l in lines)
+        return {
+            "total_in": total_in,
+            "total_out": total_out,
+            "final_balance": initial + total_in - total_out,
+        }
+
     # ------------------------------------------------------------------ #
     # Métodos de impresión                                                #
     # ------------------------------------------------------------------ #
