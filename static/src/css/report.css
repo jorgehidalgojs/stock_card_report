@@ -1,128 +1,157 @@
-.act_as_table {
-    display: table !important;
-    background-color: white;
-}
-.act_as_row {
-    display: table-row !important;
-    page-break-inside: avoid;
-}
-.act_as_cell {
-    display: table-cell !important;
-    page-break-inside: avoid;
-}
-.act_as_thead {
-    display: table-header-group !important;
-}
-.data_table {
-    width: 100% !important;
-    border-left: 0px;
-    border-right: 0px;
-    text-align: center;
-    font-size: 10px;
-    padding-right: 3px;
-    padding-left: 3px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border-collapse: collapse;
-}
-.data_table .act_as_cell {
-    border: 1px solid #cccccc;
-    text-align: center;
-    padding: 2px 4px;
-    word-wrap: break-word;
-}
-.data_table .act_as_row.labels {
-    font-weight: bold;
-    background-color: #3a6ea5 !important;
-    color: white !important;
-}
-.data_table .act_as_row.labels .act_as_cell {
-    border-color: #2e5890;
-}
-.act_as_cell.left {
-    text-align: left;
-}
-.act_as_cell.right {
-    text-align: right;
-}
+/* ============================================================
+   FICHA DE STOCK — Estilos gerais
+   ============================================================ */
 
-/* Cabeçalho do produto */
-.sc_product_header {
-    text-align: center;
-    font-family: Helvetica, Arial;
-    margin-bottom: 6px;
-    border-bottom: 2px solid #3a6ea5;
-    padding-bottom: 4px;
-}
-.sc_product_ref {
-    font-size: 11px;
-    font-weight: bold;
-    color: #3a6ea5;
-    margin-right: 8px;
-    background: #eef3fa;
-    padding: 2px 6px;
-    border-radius: 3px;
-}
-.sc_product_name {
-    font-size: 13px;
-    font-weight: bold;
+.o_stock_card_reports_page {
+    padding: 16px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
     color: #222;
 }
 
-/* Linha STOCK ANTERIOR — amarela como no PHC */
-.sc_initial_row {
-    background-color: #fff59d !important;
-    font-weight: bold;
+/* ---- Cabeçalho do produto ---- */
+.sc-product-card {
+    background: #f4f7fb;
+    border-left: 5px solid #1a73e8;
+    border-radius: 4px;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
 }
-.sc_initial_row .act_as_cell {
-    border-color: #e6d84a !important;
+.sc-product-ref {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a73e8;
+    background: #dce8fd;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
-
-/* Linha TOTAIS */
-.sc_totals_row {
-    background-color: #e8f0fe !important;
-    font-weight: bold;
-    border-top: 2px solid #3a6ea5;
-}
-.sc_totals_row .act_as_cell {
-    border-color: #3a6ea5 !important;
-}
-
-/* Coluna Saldo em destaque */
-.sc_balance {
-    background-color: #f0f7ff;
-    font-weight: bold;
-}
-.sc_initial_row .sc_balance,
-.sc_totals_row .sc_balance {
-    background-color: #3a6ea5 !important;
-    color: white !important;
+.sc-product-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
 }
 
-/* Label STOCK ANTERIOR / TOTAIS alinhado à esquerda */
-.sc_label {
-    text-align: left !important;
-    padding-left: 6px !important;
+/* ---- Bloco de filtros ---- */
+.sc-filters {
+    display: flex;
+    gap: 24px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    font-size: 11px;
+}
+.sc-filter-item {
+    display: flex;
+    flex-direction: column;
+}
+.sc-filter-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #888;
+    margin-bottom: 2px;
+}
+.sc-filter-value {
+    font-weight: 600;
+    color: #333;
 }
 
-/* Linhas alternadas */
-.act_as_row.lines:nth-child(even) {
-    background-color: #f8f9fa;
+/* ---- Tabela principal ---- */
+.sc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
 }
-.act_as_row.lines:hover {
-    background-color: #e8f4ff;
+.sc-table thead tr {
+    background: #1a73e8;
+    color: #fff;
+}
+.sc-table thead th {
+    padding: 7px 8px;
+    font-weight: 600;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    border: 1px solid #1558b0;
+}
+.sc-table thead th.right { text-align: right; }
+.sc-table thead th.left  { text-align: left;  }
+
+/* Linha saldo anterior */
+.sc-row-initial {
+    background: #fffde7;
+    border-left: 3px solid #f9a825;
+}
+.sc-row-initial td {
+    padding: 6px 8px;
+    border: 1px solid #f0e58a;
+    font-weight: 600;
+    color: #5d4037;
 }
 
-.custom_footer {
-    font-size: 7px !important;
+/* Linhas de movimento */
+.sc-table tbody tr.sc-row-move {
+    border-bottom: 1px solid #e8eaed;
 }
-.button_row {
-    padding-bottom: 10px;
+.sc-table tbody tr.sc-row-move:nth-child(even) {
+    background: #f8f9fa;
 }
-.o_stock_card_reports_page {
-    padding-top: 10px;
-    width: 95%;
-    margin-right: auto;
-    margin-left: auto;
-    font-family: Helvetica, Arial;
+.sc-table tbody tr.sc-row-move:hover {
+    background: #e8f0fe;
 }
+.sc-table tbody tr.sc-row-move td {
+    padding: 5px 8px;
+    border: 1px solid #e0e0e0;
+    vertical-align: middle;
+}
+
+/* Linha de totais */
+.sc-row-totals {
+    background: #e8f0fe;
+    border-top: 2px solid #1a73e8;
+}
+.sc-row-totals td {
+    padding: 7px 8px;
+    border: 1px solid #c5d8fc;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* Coluna saldo — destaque sutil em todas as linhas */
+.sc-col-balance {
+    background: rgba(26, 115, 232, 0.06);
+    font-weight: 600;
+}
+.sc-row-initial   .sc-col-balance { background: #fff3cd; }
+.sc-row-totals    .sc-col-balance { background: #1a73e8; color: #fff; }
+
+/* Alinhamentos */
+.sc-table td.right, .sc-table th.right { text-align: right;  }
+.sc-table td.left,  .sc-table th.left  { text-align: left;   }
+.sc-table td.center                    { text-align: center; }
+
+/* Valores zero — menos destaque */
+.sc-zero { color: #bbb; }
+
+/* ---- Botões (vista HTML) ---- */
+.button_row { padding-bottom: 10px; }
+
+/* ---- Rodapé PDF ---- */
+.custom_footer { font-size: 7px !important; }
+
+/* ---- Compatibilidade act_as_table (mantida para não quebrar nada) ---- */
+.act_as_table  { display: table !important; }
+.act_as_row    { display: table-row !important; }
+.act_as_cell   { display: table-cell !important; }
+.act_as_thead  { display: table-header-group !important; }
