@@ -54,7 +54,7 @@
         <t t-foreach="o.product_ids" t-as="product">
             <div class="page">
                 <div class="row">
-                    <t t-set="title">Stock Card - <t t-out="product.name" /></t>
+                    <t t-set="title">Ficha de Stock - <t t-out="product.name" /></t>
                     <h4 class="mt0" t-out="title" style="text-align: center;" />
                 </div>
                 <t t-call="stock_card_report.report_stock_card_report_filters" />
@@ -65,7 +65,7 @@
                     <div class="act_as_row lines">
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
-                        <div class="act_as_cell"><strong>Initial Balance</strong></div>
+                        <div class="act_as_cell"><strong>Saldo Inicial</strong></div>
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
                         <div class="act_as_cell" />
@@ -94,9 +94,9 @@
     <template id="stock_card_report.report_stock_card_report_filters">
         <div class="act_as_table data_table" style="width: 100%;">
             <div class="act_as_row labels">
-                <div class="act_as_cell">Date From</div>
-                <div class="act_as_cell">Date To</div>
-                <div class="act_as_cell">Location</div>
+                <div class="act_as_cell">Data Inicial</div>
+                <div class="act_as_cell">Data Final</div>
+                <div class="act_as_cell">Localização</div>
             </div>
             <div class="act_as_row">
                 <div class="act_as_cell">
@@ -115,16 +115,16 @@
     <template id="stock_card_report.report_stock_card_lines_header">
         <div class="act_as_thead">
             <div class="act_as_row labels">
-                <div class="act_as_cell">Date</div>
-                <div class="act_as_cell">Operation</div>
-                <div class="act_as_cell">Reference</div>
-                <div class="act_as_cell">Source</div>
-                <div class="act_as_cell">Partner</div>
-                <div class="act_as_cell right">In</div>
-                <div class="act_as_cell right">Out</div>
-                <div class="act_as_cell right">Unit Price</div>
+                <div class="act_as_cell">Data</div>
+                <div class="act_as_cell">Operação</div>
+                <div class="act_as_cell">Referência</div>
+                <div class="act_as_cell">Doc. Origem</div>
+                <div class="act_as_cell">Parceiro</div>
+                <div class="act_as_cell right">Entradas</div>
+                <div class="act_as_cell right">Saídas</div>
+                <div class="act_as_cell right">Preço Unit.</div>
                 <div class="act_as_cell right">Total</div>
-                <div class="act_as_cell right">Balance</div>
+                <div class="act_as_cell right">Saldo</div>
             </div>
         </div>
     </template>

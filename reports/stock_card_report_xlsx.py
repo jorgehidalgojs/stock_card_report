@@ -31,21 +31,21 @@ class ReportStockCardReportXlsx(models.AbstractModel):
     def _get_ws_params(self, wb, data, product):
         filter_template = {
             "1_date_from": {
-                "header": {"value": "Date from"},
+                "header": {"value": "Data Inicial"},
                 "data": {
                     "value": self._render("date_from"),
                     "format": FORMATS["format_tcell_date_center"],
                 },
             },
             "2_date_to": {
-                "header": {"value": "Date to"},
+                "header": {"value": "Data Final"},
                 "data": {
                     "value": self._render("date_to"),
                     "format": FORMATS["format_tcell_date_center"],
                 },
             },
             "3_location": {
-                "header": {"value": "Location"},
+                "header": {"value": "Localização"},
                 "data": {
                     "value": self._render("location"),
                     "format": FORMATS["format_tcell_center"],
@@ -54,7 +54,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
         }
         initial_template = {
             "1_ref": {
-                "data": {"value": "Initial", "format": FORMATS["format_tcell_center"]},
+                "data": {"value": "Saldo Inicial", "format": FORMATS["format_tcell_center"]},
                 "colspan": 4,
             },
             "2_balance": {
@@ -66,7 +66,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
         }
         stock_card_template = {
             "1_date": {
-                "header": {"value": "Date"},
+                "header": {"value": "Data"},
                 "data": {
                     "value": self._render("date"),
                     "format": FORMATS["format_tcell_date_left"],
@@ -74,7 +74,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 18,
             },
             "2_operation": {
-                "header": {"value": "Operation"},
+                "header": {"value": "Operação"},
                 "data": {
                     "value": self._render("operation"),
                     "format": FORMATS["format_tcell_left"],
@@ -82,7 +82,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 20,
             },
             "3_reference": {
-                "header": {"value": "Reference"},
+                "header": {"value": "Referência"},
                 "data": {
                     "value": self._render("reference"),
                     "format": FORMATS["format_tcell_left"],
@@ -90,7 +90,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 25,
             },
             "4_source": {
-                "header": {"value": "Source"},
+                "header": {"value": "Doc. Origem"},
                 "data": {
                     "value": self._render("source"),
                     "format": FORMATS["format_tcell_left"],
@@ -98,7 +98,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 20,
             },
             "5_partner": {
-                "header": {"value": "Partner"},
+                "header": {"value": "Parceiro"},
                 "data": {
                     "value": self._render("partner"),
                     "format": FORMATS["format_tcell_left"],
@@ -106,17 +106,17 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 25,
             },
             "6_input": {
-                "header": {"value": "In"},
+                "header": {"value": "Entradas"},
                 "data": {"value": self._render("input")},
                 "width": 15,
             },
             "7_output": {
-                "header": {"value": "Out"},
+                "header": {"value": "Saídas"},
                 "data": {"value": self._render("output")},
                 "width": 15,
             },
             "8_price_unit": {
-                "header": {"value": "Unit Price"},
+                "header": {"value": "Preço Unit."},
                 "data": {
                     "value": self._render("price_unit"),
                     "format": FORMATS["format_tcell_amount_right"],
@@ -124,7 +124,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 15,
             },
             "9_price_total": {
-                "header": {"value": "Total"},
+                "header": {"value": "Total (MT)"},
                 "data": {
                     "value": self._render("price_total"),
                     "format": FORMATS["format_tcell_amount_right"],
@@ -132,7 +132,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
                 "width": 15,
             },
             "10_balance": {
-                "header": {"value": "Balance"},
+                "header": {"value": "Saldo"},
                 "data": {"value": self._render("balance")},
                 "width": 15,
             },
@@ -141,7 +141,7 @@ class ReportStockCardReportXlsx(models.AbstractModel):
         ws_params = {
             "ws_name": product.name,
             "generate_ws_method": "_stock_card_report",
-            "title": "Stock Card - {}".format(product.name),
+            "title": "Ficha de Stock - {}".format(product.name),
             "wanted_list_filter": [k for k in sorted(filter_template.keys())],
             "col_specs_filter": filter_template,
             "wanted_list_initial": [k for k in sorted(initial_template.keys())],
